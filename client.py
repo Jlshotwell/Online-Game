@@ -7,6 +7,9 @@ pygame.init()
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+ip = input('What is the IP? ')
+port = int(input('What is the port? '))
+
 x = 1200
 y = 800
 window = pygame.display.set_mode((x, y))
@@ -30,10 +33,11 @@ def draw_window(player1):
             else:
                 p.draw(window)
         pygame.display.update()
+
         
              
 def main():
-    client.connect(('127.0.0.1', 8080))
+    client.connect((ip, port))
     player1 = pickle.loads(client.recv(2048)) #recieves player specific data
     draw_window(player1)   
 

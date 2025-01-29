@@ -18,7 +18,7 @@ class Player():
         
         key = pygame.key.get_pressed()
         while True:
-            if key[pygame.K_UP]:
+            if key[pygame.K_UP] and self.co_ordinates[0] > 0:
                 self.position.y = -1    
             elif key[pygame.K_DOWN]:
                 self.position.y = 1 
@@ -58,7 +58,8 @@ class Player():
         
         
     def draw(self, window):
-        window.blit(pygame.image.load(self.image).convert(), self.co_ordinates)
+        self.player_surface = window.blit(pygame.image.load(self.image).convert(), self.co_ordinates)
+        print(self.player_surface)
 
     def animate(self, images= []):
         self.image = images[self.current_image]
